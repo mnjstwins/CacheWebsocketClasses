@@ -1,0 +1,29 @@
+<html>
+<head>
+
+<!-- Put your page Title here -->
+<title>	Cache Server Page </title>
+
+</head>
+
+<body>
+		<script type="text/javascript">
+		
+			var ws = new WebSocket("ws://" + window.location.host + "/csp/WEBDEV/DLS.REST.WebSocketSubscriber.cls");
+			ws.onopen = function() {
+				console.log('connection established');
+				var message = 'subscribe:game informer'
+				ws.send(message);
+			};
+			ws.onmessage = function(evt) {console.log(evt.data)};
+			console.log(ws.readyState);
+			
+			
+			
+		</script>
+		<button onclick="ws.send('unsubscribe:game informer')">
+			Unsubscribe
+		</button>
+		<!-- Put your page code here -->
+</body>
+</html>
